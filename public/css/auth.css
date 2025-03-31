@@ -4,10 +4,15 @@
     color: rgb(162, 162, 162);
 }
 
+
 .msg_login {
     color: red;
     text-align: center !important;
     margin-bottom: 5px;
+}
+
+.msg_input {
+    color: red;
 }
 
 

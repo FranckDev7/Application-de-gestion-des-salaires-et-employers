@@ -40,9 +40,9 @@ class AuthRequest extends FormRequest
     {
         // Retourne les messages de validation personnalisés pour les champs 'email' et 'password'
         return [
-            'email.required' => 'Le mail est requis', // Message lorsque le champ email est requis
-            'email.email' => 'Mauvais format du mail', // Message lorsque le champ email n'a pas un format valide
-            'password.required' => 'Mot de passe requis', // Message lorsque le champ password est requis
+            'email.required' => 'email est requis', // Message lorsque le champ email est requis
+            'email.email' => 'mauvais format du mail', // Message lorsque le champ email n'a pas un format valide
+            'password.required' => 'password requis', // Message lorsque le champ password est requis
         ];
     }
 }
