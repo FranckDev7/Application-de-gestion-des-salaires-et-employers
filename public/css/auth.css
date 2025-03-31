@@ -1,0 +1,48 @@
+
+.form-container h2 {
+    margin-bottom: .5em;
+    color: rgb(162, 162, 162);
+}
+
+.msg_login {
+    color: red;
+    text-align: center !important;
+    margin-bottom: 5px;
+}
+
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.btn-primary {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+.form-container {
+
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: white; /* Optionnel : pour un fond blanc */
+}
+.password-recovery {
+    margin-top: 1rem;
+    text-align: center;
+}
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+/* Style pour centrer le conteneur */
+.full-height {
+    min-height: 100vh; /* Hauteur minimale de 100% de la fenêtre */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
