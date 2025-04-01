@@ -29,8 +29,8 @@ class saveDepartementRequest extends FormRequest
     public function messages ()
     {
         return [
-            'name.required' => 'Le nom du departement est requis',
-            'name.unique' => 'Le nom du departement existe déjà'
+            'name.required' => 'ce champ est requis, Veuillez le renseigner svp',
+            'name.unique' => 'ce nom existe, Veuillez renseigner un nom different'
         ];
 
     }

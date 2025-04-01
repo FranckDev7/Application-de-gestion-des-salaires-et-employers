@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [DepartementController::class, 'create'])->name('departement.create'); // Route pour afficher le formulaire de création d'un nouveau departement
         Route::post('/create', [DepartementController::class, 'store'])->name('departement.store'); // Route pour soumettre le formulaire de création d'un nouveau departement
         Route::get('/edit/{departement}', [DepartementController::class, 'edit'])->name('departement.edit'); // Route pour afficher le formulaire de modification d'un departement existant
+        Route::put('/update/{departement}', [DepartementController::class, 'update'])->name('departement.update'); // Route pour mettre à jour les modifications d'un departement existant
+        Route::get('/{departement}', [DepartementController::class, 'delete'])->name('departement.delete'); // Route pour supprimer un departement par son ID
     });
 
 });

@@ -18,6 +18,9 @@
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ asset('assets/css/portal.css') }}">
 
+    <!-- CSS PERSONNALISE -->
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+
 </head>
 
 <body class="app">

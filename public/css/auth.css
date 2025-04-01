@@ -12,7 +12,8 @@
 }
 
 .msg_input {
-    color: red;
+    color: red !important;
+    font-size: .8rem !important;
 }
 
 

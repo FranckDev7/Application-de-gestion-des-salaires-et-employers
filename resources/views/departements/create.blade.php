@@ -20,7 +20,14 @@
                         <!-- Nom -->
                         <div class="mb-3">
                             <label for="setting-input-1" class="form-label">Nom</label>
-                            <input name="name" type="text" class="form-control" id="setting-input-1" placeholder="Entrer le nom">
+                            <input name="name" value="{{ old('name') }}" type="text" class="form-control" id="setting-input-1" placeholder="Entrer le nom">
+
+                            <div class="msg_input">
+                                @error('name')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+
                         </div>
 
 
