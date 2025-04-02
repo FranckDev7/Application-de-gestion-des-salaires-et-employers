@@ -43,6 +43,14 @@
         </div><!--//col-auto-->
     </div><!--//row-->
 
+    {{-- Vérifiez s'il y a une clé nommée 'success_message' dans la session --}}
+    @if (Session::get('success_message'))
+        {{-- S'il y a cette clé, Afficher sa valeur --}}
+        <div class="alert-custom alert-success-custom">
+            {{ Session::get('success_message') }}
+        </div>
+    @endif
+
     <div class="tab-content" id="orders-table-tab-content">
         <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
             <div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -52,6 +60,7 @@
                             <thead>
                                 <tr>
                                     <th class="cell">N°</th>
+                                    <th>Departement</th>
                                     <th class="cell">Nom</th>
                                     <th class="cell">Prenom</th>
                                     <th class="cell">Email</th>
@@ -65,6 +74,7 @@
                                 @forelse ($employers as $employer )
                                     <tr>
                                         <td class="cell">{{ $employer->id }}</td>
+                                        <td>{{ $employer->departement->name }}</td>
                                         <td class="cell">{{ $employer->nom }}</td>
                                         <td class="cell">{{ $employer->prenom }}</td>
                                         <td class="cell">{{ $employer->email }}</td>
