@@ -11,7 +11,7 @@
     <div class="container full-height">
         <div class="form-container shadow">
             <h2 class="text-center">Espace de connexion</h2>
-
+             
             <!-- Vérifie si la clé 'error_msg' existe dans la session -->
             @if (Session::get('error_msg'))
                 <!-- Affiche la valeur de la clé 'error_msg' -->

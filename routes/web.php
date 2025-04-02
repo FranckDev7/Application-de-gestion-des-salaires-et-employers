@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConfigurationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\DepartementController;
@@ -32,10 +33,54 @@ Route::middleware('auth')->group(function () {
     Route::prefix('departements')->group(function () {
         Route::get('/', [DepartementController::class, 'index'])->name('departement.index'); // Route pour afficher la liste de departements
         Route::get('/create', [DepartementController::class, 'create'])->name('departement.create'); // Route pour afficher le formulaire de création d'un nouveau departement
-        Route::post('/create', [DepartementController::class, 'store'])->name('departement.store'); // Route pour soumettre le formulaire de création d'un nouveau departement
         Route::get('/edit/{departement}', [DepartementController::class, 'edit'])->name('departement.edit'); // Route pour afficher le formulaire de modification d'un departement existant
+
+        //Routes d'actions
+        Route::post('/create', [DepartementController::class, 'store'])->name('departement.store'); // Route pour soumettre le formulaire de création d'un nouveau departement
         Route::put('/update/{departement}', [DepartementController::class, 'update'])->name('departement.update'); // Route pour mettre à jour les modifications d'un departement existant
         Route::get('/{departement}', [DepartementController::class, 'delete'])->name('departement.delete'); // Route pour supprimer un departement par son ID
     });
 
+    //Groupe des routes pour la configuration de l'application
+    Route::prefix('configurations')->group(function () {
+        Route::get('/', [ConfigurationController::class, 'index'])->name('configurations');
+        Route::get('/create', [ConfigurationController::class, 'create'])->name('configurations.create');
+
+        //Routes d'actions
+        Route::post('/store', [ConfigurationController::class, 'store'])->name('configurations.store');
+        Route::get('/delete/{configuration}', [ConfigurationController::class, 'delete'])->name('configurations.delete');
+    });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

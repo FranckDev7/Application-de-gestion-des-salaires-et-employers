@@ -13,6 +13,11 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
 }
 
+.alert-danger-custom {
+    color: white !important;
+    background-color: rgb(211, 15, 15) !important;
+}
+
 .alert-success-custom {
     color: white !important;
     background-color: rgb(27, 181, 53) !important;
@@ -27,6 +32,12 @@
 .msg_input {
     color: red !important;
     font-size: .8rem !important;
+}
+
+.msg_block {
+    color: red !important;
+    font-size: 1rem !important;
+    text-align: center !important;
 }
 
 
