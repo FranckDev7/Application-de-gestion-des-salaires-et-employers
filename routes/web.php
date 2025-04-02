@@ -21,7 +21,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [EmployerController::class, 'index'])->name('employer.index'); // Route pour afficher la liste des employeurs
         Route::get('/create', [EmployerController::class, 'create'])->name('employer.create'); // Route pour afficher le formulaire de création d'un nouvel employeur
         Route::get('/edit/{employer}', [EmployerController::class, 'edit'])->name('employer.edit'); // Route pour afficher le formulaire de modification d'un employeur existant
+
+        //Routes d'action
         Route::post('/store', [EmployerController::class, 'store'])->name('employer.store'); // Route pour soumettre le formulaire de créttion d'employeur
+        Route::put('/update/{employer}', [EmployerController::class, 'update'])->name('employer.update'); // Route pour mettre à jour un employer
+        Route::get('/delete/{employer}', [EmployerController::class, 'delete'])->name('employer.delete'); // Route pour supprimer un employer par son ID
     });
 
     // Groupe des routes pour les departements

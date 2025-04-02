@@ -46,7 +46,7 @@
     {{-- Vérifiez s'il y a une clé nommée 'success_message' dans la session --}}
     @if (Session::get('success_message'))
         {{-- S'il y a cette clé, Afficher sa valeur --}}
-        <div class="alert-custom alert-success-custom">
+        <div class="tab-content alert-custom alert-success-custom">
             {{ Session::get('success_message') }}
         </div>
     @endif
@@ -66,7 +66,7 @@
                                     <th class="cell">Email</th>
                                     <th class="cell">Contact</th>
                                     <th class="cell">Salaire</th>
-                                    <th class="cell"></th>
+                                    <th class="cell">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,7 +80,10 @@
                                         <td class="cell">{{ $employer->email }}</td>
                                         <td class="cell">{{ $employer->contact }}</td>
                                         <td class="cell"><span class="badge bg-success">{{ $employer->montant_journalier * 31 }} euro</span></td>
-                                        <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                                        <td class="cell">
+                                            <a class="btn-sm app-btn-secondary" href="{{ route('employer.edit', $employer->id) }}">Editer</a>
+                                            <a class="btn-sm app-btn-secondary" href="{{ route('employer.delete', $employer->id) }}">Supprimer</a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <td class="cell" colspan="8">Aucun employer ajouté</td>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmployeRequest;
+use App\Http\Requests\UpdateEmployerRequest;
 use App\Models\Departement;
 use App\Models\Employer;
+use Illuminate\Support\Facades\Log;
 
 class EmployerController extends Controller
 {
@@ -39,8 +41,11 @@ class EmployerController extends Controller
      */
     public function edit(Employer $employer)
     {
+        // Récupère tous les départements
+        $departements = Departement::all();
+
         // Retourne la vue 'employers.edit' avec l'employeur à éditer
-        return view('employers.edit', compact('employer'));
+        return view('employers.edit', compact('employer', 'departements'));
     }
 
     /**
@@ -63,6 +68,46 @@ class EmployerController extends Controller
                 return back()->with('error_message', 'Une erreur est survenue lors de l\'ajout de l\'employé.');
             }
         } catch (\Exception $e) {
+            // En cas d'exception, retourne avec un message d'erreur
+            return back()->with('error_message', 'Une erreur est survenue : ' . $e->getMessage());
+        }
+    }
+
+    public function update(UpdateEmployerRequest $request, Employer $employer)
+    {
+        try {
+            // Mise à jour des données validées
+            $employer->update($request->validated());
+
+            return to_route('employer.index')->with('success_message', 'Les informations de l\'employé ont été mises à jour');
+        } catch (\Exception $e) {
+
+            // Enregistrement de l'erreur dans les logs
+            Log::error('Erreur lors de la mise à jour de l\'employé : ' . $e->getMessage());
+            return back()->with('error_message', 'Une erreur est survenue, veuillez réessayer.');
+        }
+    }
+
+
+    /**
+     * Supprime un employé spécifié de la base de données.
+     *
+     * @param \App\Models\Employer $employer
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete (Employer $employer)
+    {
+        try {
+            // Supprime l'employé de la base de données
+            $employer->delete();
+
+            // Redirige vers la liste des employeurs avec un message de succès
+            return to_route('employer.index')->with('success_message', 'Employer supprimé avec succès');
+
+        } catch (\Exception $e) {
+
+            // Enregistrement de l'erreur dans les logs
+            Log::error('Erreur lors de la suppression de l\'employé : ' . $e->getMessage());
             // En cas d'exception, retourne avec un message d'erreur
             return back()->with('error_message', 'Une erreur est survenue : ' . $e->getMessage());
         }
