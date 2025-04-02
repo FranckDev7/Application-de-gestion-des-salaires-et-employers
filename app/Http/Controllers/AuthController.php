@@ -32,8 +32,7 @@ class AuthController extends Controller
 
         // Tente de connecter l'utilisateur avec les identifiants fournis
         if (Auth::attempt($credentials)) {
-            // Redirige vers le tableau de bord si la connexion est réussie
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard'); // Redirige vers le tableau de bord si la connexion est réussie
         } else {
             // Redirige vers la page précédente avec les données saisies et un message d'erreur si la connexion échoue
             return redirect()->back()->withInput($request->only('email'))->with('error_msg', 'Informations d\'identification incorrectes.');
