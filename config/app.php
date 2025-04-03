@@ -1,5 +1,8 @@
 <?php
 
+use App\Helpers\ConfigHelper;
+use Illuminate\Support\Facades\Facade;
+
 return [
 
     /*
@@ -122,5 +125,24 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Configuration des Alias de Classes
+    |--------------------------------------------------------------------------
+    |
+    | Les alias de classes facilitent l'utilisation des classes dans l'ensemble
+    | du projet Laravel. Laravel fournit une liste d'alias par défaut via la méthode
+    | `Facade::defaultAliases()`.
+    | Les alias permettent d'utiliser des classes sans avoir à spécifier leurs
+    | noms complets à chaque utilisation.
+    |
+    */
+
+    'aliases' => Facade::defaultAliases()->merge([
+        'AppNameGetter' => ConfigHelper::class,
+    ])->toArray(),
+
+
 
 ];
