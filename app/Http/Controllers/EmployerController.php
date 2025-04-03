@@ -19,7 +19,7 @@ class EmployerController extends Controller
         // Récupère une liste paginée de 5 employeurs
         $employers = Employer::with('departement')->paginate(5);
         // Retourne la vue 'employers.index' avec la liste des employeurs
-        return view('employers.index', compact('employers'));
+        return view('employers.index', ['employers' => $employers]);
     }
 
     /**

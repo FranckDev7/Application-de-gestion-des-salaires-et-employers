@@ -13,7 +13,7 @@ class DepartementController extends Controller
     public function index ()
     {
         $departements = Departement::paginate(4);
-        return view('departements.index', compact('departements'));
+        return view('departements.index')->with(compact('departements'));
     }
     public function create ()
     {
