@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\storeAdminRequest;
 use App\Http\Requests\updateAdminRequest;
+use App\Models\ResetCodePassword;
+use App\Notifications\SendEmailToAdminAfterRegistrationNotification;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
 use Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -32,8 +35,41 @@ class AdminController extends Controller
             $user->password = Hash::make('default');
             $user->save();
 
-            // Envoie d'un mail pour que l'utilisateur puisse valider son compte
-            
+            /**
+             * Si l'utilisateur se trouve dans la base de données et fait la demande de
+             * réinitialisation de mot de passe
+             */
+            if ($user) {
+
+                try {
+
+                    // Supprime cet enregistrement (email et code de réinitialisation)
+                    ResetCodePassword::where('mail', $user->email)->delete();
+                    // Génère le code dynamiquement
+                    $code = rand(1000, 4000);
+
+                    $data = [
+                        'code' => $code,
+                        'email' =>$user->email
+                    ];
+
+                    // Crée un nouvel enregistrement dans la table
+                    ResetCodePassword::create($data);
+
+                    /**
+                     * Envoie d'un mail pour que l'utilisateur puisse valider son compte
+                     * Envoyer un code par mail pour verification du compte
+                     */
+                    Notification::route('mail', $user->email)->notify(new SendEmailToAdminAfterRegistrationNotification($code, $user->email));
+
+                } catch (Exception $e) {
+                    dd($e);
+                    throw new Exception('Une erreur est survenue lors de l\'envoie du mail');
+                }
+
+
+
+            }
 
         } catch (Exception $e){
             //dd($e);
