@@ -11,7 +11,7 @@ class storeAdminRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,24 @@ class storeAdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required'
         ];
     }
+
+    public function messages ()
+    {
+        return [
+            'nom.required' => 'Le nom de l\'administrateur est requis',
+            'email.required' => 'Le mail est requis',
+            'email.email' => 'Le mail n\'est pas valide',
+            'email.unique' => 'Cette adresse mail est lié à un compte',
+            'password.required' => 'Le mot de passe est requis',
+        ];
+
+    }
+
+
+
 }

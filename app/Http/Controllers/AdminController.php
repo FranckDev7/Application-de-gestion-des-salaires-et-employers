@@ -6,6 +6,9 @@ use App\Http\Requests\storeAdminRequest;
 use App\Http\Requests\updateAdminRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
+use Log;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -19,11 +22,18 @@ class AdminController extends Controller
         return view('admin.edit', compact('user'));
     }
 
-    public fuction store (storeAdminRequest $request)
+    public function store (storeAdminRequest $request)
     {
         try {
 
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make('default');
+            $user->save();
 
+            // Envoie d'un mail pour que l'utilisateur puisse valider son compte
+            
 
         } catch (Exception $e){
             //dd($e);
